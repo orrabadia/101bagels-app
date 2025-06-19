@@ -1,0 +1,58 @@
+export const sample_items = [
+    {
+        id: '1',
+        name: 'Egg, Bacon, & Cheese',
+        price: "9.99",
+        favorite: true,
+        stars: 4.5,
+        imageUrl: 'breakfast-favorites/egg-bacon-cheese.jpg',
+        tags: ["Breakfast Favorite"],
+    },
+    {
+        id: '2',
+        name: 'Turkey, Bacon, & Avocado',
+        price: "14.99",
+        favorite: true,
+        stars: 4.7,
+        imageUrl: 'old-tyme-favorites/tba.jpg',
+        tags: ["Lunch", "Old Tyme Favorites"],
+        desc: "Turkey, bacon, avocado, lettuce, tomato, onion, sprouts, mayo, mustard. On your choice of bagel or bread."
+    },
+    {
+        id: '3',
+        name: 'Egg, Ham, & Cheese',
+        price: "9.99",
+        favorite: false,
+        stars: 4.2,
+        imageUrl: 'breakfast-favorites/egg-ham-cheese.jpg',
+        tags: ["Breakfast Favorite"],
+    },
+    {
+        id: '4',
+        name: 'Corn Beef Reuben',
+        price: "11.99",
+        favorite: false,
+        stars: 4.2,
+        imageUrl: 'old-tyme-favorites/reuben.jpg',
+        tags: ["Lunch", "Old Tyme Favorites"],
+    },
+    {
+        id: '5',
+        name: 'Tuna Melt',
+        price: "14.99",
+        favorite: false,
+        stars: 4.8,
+        imageUrl: 'bagel-melts/tuna-melt.jpg',
+        tags: ["Lunch", "Bagel Melts"],
+    },
+    {
+        id: '6',
+        name: 'Latte',
+        price: "2.49",
+        favorite: false,
+        stars: 4.8,
+        imageUrl: 'drinks/espresso-drinks/hot-latte.jpg',
+        tags: ["Drinks", 'Espresso Drinks'],
+    },
+
+];
