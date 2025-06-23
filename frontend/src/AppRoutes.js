@@ -1,13 +1,15 @@
 import {Route, Routes} from 'react-router-dom'
 import React from 'react'
-import Landing from './pages/Landing/Landing'
+import Menu from './pages/Menu/Menu'
 import ItemPage from './pages/Items/ItemPage';
+import Landing from './pages/Landing/Landing';
 
 export default function AppRoutes() {
   return <Routes>
     <Route path="/" element={<Landing />} />
-    <Route path="/search/:searchTerm" element={<Landing />} />
-    <Route path="/tag/:tag" element={<Landing />} />
-    <Route path="/item/:id" element={<ItemPage />} />
+    <Route path="menu" element={<Menu />} />
+    <Route path="menu/search/:searchTerm" element={<Menu />} />
+    <Route path="menu/tag/:tag" element={<Menu />} />
+    <Route path="menu/item/:id" element={<ItemPage />} />
   </Routes>;
 }

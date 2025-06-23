@@ -21,6 +21,9 @@ export default function Header() {
                 <Link to="/" className={classes.logo}>
                 101 Bagels and Subs
                 </Link>
+                <Link to="/menu" className={classes.logo}>
+                Menu
+                </Link>
                 <nav>
                     <ul>
                         {
