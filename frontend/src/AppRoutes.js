@@ -5,5 +5,6 @@ import Landing from './pages/Landing/Landing'
 export default function AppRoutes() {
   return <Routes>
     <Route path="/" element={<Landing />} />
+    <Route path="/search/:searchTerm" element={<Landing />} />
   </Routes>;
 }
