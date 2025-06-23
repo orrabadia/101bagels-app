@@ -6,5 +6,6 @@ export default function AppRoutes() {
   return <Routes>
     <Route path="/" element={<Landing />} />
     <Route path="/search/:searchTerm" element={<Landing />} />
+    <Route path="/tag/:tag" element={<Landing />} />
   </Routes>;
 }

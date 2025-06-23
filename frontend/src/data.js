@@ -6,7 +6,7 @@ export const sample_items = [
         favorite: true,
         stars: 4.5,
         imageUrl: 'breakfast-favorites/egg-bacon-cheese.jpg',
-        tags: ["Breakfast Favorite"],
+        tags: ["Egg Breakfast Favorites"],
     },
     {
         id: '2',
@@ -25,7 +25,7 @@ export const sample_items = [
         favorite: false,
         stars: 4.2,
         imageUrl: 'breakfast-favorites/egg-ham-cheese.jpg',
-        tags: ["Breakfast Favorite"],
+        tags: ["Egg Breakfast Favorites"],
     },
     {
         id: '4',
@@ -52,7 +52,19 @@ export const sample_items = [
         favorite: false,
         stars: 4.8,
         imageUrl: 'drinks/espresso-drinks/hot-latte.jpg',
-        tags: ["Drinks", 'Espresso Drinks'],
+        tags: ['Coffee & Espresso'],
     },
 
 ];
+
+export const sample_tags = [
+    {name: 'All', count: 6},
+    {name: 'Egg Breakfast Favorites', count: 6},
+    {name: 'Spreads', count: 6},
+    {name: 'Bagel Melts', count: 6},
+    {name: 'Old Tyme Favorites', count: 6},
+    {name: '101 Sandwiches', count: 6},
+    {name: 'Bagels To Go', count: 7},
+    {name: 'Coffee & Espresso', count: 7},
+    {name: 'Drinks', count: 8},
+]
