@@ -7,6 +7,7 @@ export const sample_items = [
         stars: 4.5,
         imageUrl: 'breakfast-favorites/egg-bacon-cheese.jpg',
         tags: ["Egg Breakfast Favorites"],
+        desc: "A true favorite and classic."
     },
     {
         id: '2',
