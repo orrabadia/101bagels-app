@@ -3,6 +3,7 @@ import React from 'react'
 import Menu from './pages/Menu/Menu'
 import ItemPage from './pages/Items/ItemPage';
 import Landing from './pages/Landing/Landing';
+import CartPage from './pages/Cart/CartPage';
 
 export default function AppRoutes() {
   return <Routes>
@@ -11,5 +12,6 @@ export default function AppRoutes() {
     <Route path="menu/search/:searchTerm" element={<Menu />} />
     <Route path="menu/tag/:tag" element={<Menu />} />
     <Route path="menu/item/:id" element={<ItemPage />} />
+    <Route path="cart" element={<CartPage />} />
   </Routes>;
 }

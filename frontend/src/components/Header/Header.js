@@ -1,4 +1,5 @@
 import React from 'react'
+import { useCart } from '../../hooks/useCart';
 import classes from './header.module.css'
 import { Link } from 'react-router-dom';
 
@@ -8,9 +9,7 @@ export default function Header() {
         name: 'SampleUser',
     };
 
-    const cart = {
-        totalCount: 10,
-    };
+    const {cart} = useCart();
 
     /* Need to implement */
     const logout = () => {}
