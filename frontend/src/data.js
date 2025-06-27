@@ -68,4 +68,6 @@ export const sample_tags = [
     {name: 'Bagels To Go', count: 7},
     {name: 'Coffee & Espresso', count: 7},
     {name: 'Drinks', count: 8},
+    {name: 'Gluten Free', count: 2},
+    {name: 'Sides', count: 2},
 ]
