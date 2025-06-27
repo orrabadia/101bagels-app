@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { sample_items } from '../../../backend/src/data';
+
 
 const CartContext = createContext(null);
 
