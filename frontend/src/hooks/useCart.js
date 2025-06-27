@@ -59,9 +59,10 @@ export default function CartProvider({ children }) {
     setCartItems(updatedCartItems);
   };
 
-  const removeFromCart = itemId => {
-    const filteredCartItems = cartItems.filter(item => item.item.id !== itemId);
-    setCartItems(filteredCartItems);
+  const removeFromCartByIndex = index => {
+    const updatedItems = [...cartItems];
+    updatedItems.splice(index, 1);
+    setCartItems(updatedItems);
   };
 
   const addToCart = item => {
@@ -77,7 +78,7 @@ export default function CartProvider({ children }) {
     <CartContext.Provider
       value={{
         cart: { items: cartItems, totalPrice, totalCount },
-        removeFromCart,
+        removeFromCartByIndex,
         updateItemQuantity,
         addToCart
       }}

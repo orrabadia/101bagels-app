@@ -7,7 +7,7 @@ import Price from '../../components/Price/Price';
 import NotFound from '../../components/NotFound/NotFound';
 
 export default function CartPage() {
-  const { cart, updateItemQuantity, removeFromCart } = useCart();
+  const { cart, updateItemQuantity, removeFromCartByIndex } = useCart();
 
   return (
     <>
@@ -15,9 +15,9 @@ export default function CartPage() {
       {cart.items.length === 0? (<NotFound message='Cart Is Empty!' show ={true} showButton={true} />) : (
         <div className={classes.container}>
           <ul className={classes.list}>
-            {cart.items.map(item => (
+            {cart.items.map((item, index) => (
               
-                <li key={item.item.id}>
+                <li key={index}>
                   <div>
                     <img src={`/menu-items/${item.item.imageUrl}`} alt={item.item.name} />
                   </div>
@@ -47,7 +47,7 @@ export default function CartPage() {
                     <Price price={item.price} locale={'en-US'} currency={'USD'}/>
                   </div>
                   <div>
-                    <button className={classes.remove_button} onClick={() => removeFromCart(item.item.id)}>Remove</button>
+                    <button className={classes.remove_button} onClick={() => removeFromCartByIndex(index)}>Remove</button>
                   </div>
                 </li>
             ))}
