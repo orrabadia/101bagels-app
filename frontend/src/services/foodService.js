@@ -1,4 +1,4 @@
-import { sample_items, sample_tags } from "../data";
+import { sample_items, sample_tags } from "../../../backend/src/data";
 
 export const getAll = async () => sample_items;
 
