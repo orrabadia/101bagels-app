@@ -8,7 +8,7 @@ export default function Tags({tags, forItemPage}) {
         className={classes.container} style={{
         justifyContent: forItemPage? 'start' : 'center',
     }}>{ tags.map(tag => (
-            <Link key={tag.name} to={`/tag/${tag.name}`}>
+            <Link key={tag.name} to={`/menu/tag/${tag.name}`}>
                 {tag.name} {!forItemPage && `(${tag.count})`}
             </Link>
     ))}
