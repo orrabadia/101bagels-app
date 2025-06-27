@@ -6,9 +6,11 @@ import { getByID } from '../../services/foodService';
 import StarRating from '../../components/StarRating/StarRating';
 import Tags from '../../components/Tags/Tags';
 import Price from '../../components/Price/Price';
+import NotFound from '../../components/NotFound/NotFound';
 
 export default function ItemPage() {
     const [item, setItem] = useState({});
+    const [notFound, setNotFound] = useState(false);
     const {id} = useParams();
     const {addToCart} = useCart();
     const navigate = useNavigate()
@@ -19,10 +21,36 @@ export default function ItemPage() {
     }
 
     useEffect(() => {
-        getByID(id).then(setItem)}, [id]);
+      getByID(id).then(setItem)}, [id]);
+
+    useEffect(() => {
+      getByID(id)
+        .then(data => {
+          if (!data || Object.keys(data).length === 0) {
+            setNotFound(true);
+          } else {
+            setItem(data);
+          }
+        })
+      .catch(() => setNotFound(true));
+  }, [id]);
+
+  if (notFound) {
+    return (
+      <NotFound
+        show={true}
+        message="Food Not Found!"
+        linkText="Back To Menu"
+        linkRoute="/menu"
+        showButton={true}
+      />
+    );
+  }
+
+    
   return (
     <>
-    { item && <div className={classes.container}>
+    { !item? (<NotFound message="Food Not Found!" linkText='Back To Menu' showButton={true} /> ) : (<div className={classes.container}>
         <img className={classes.image} src={`/menu-items/${item.imageUrl}`} alt={item.name}/>
         <div className={classes.details}>
             <div className={classes.header}>
@@ -51,7 +79,7 @@ export default function ItemPage() {
             <button onClick={handleAddToCart}>Add To Cart</button>
         </div>
         
-        </div>}
+        </div>)}
     </>
   )
 }
