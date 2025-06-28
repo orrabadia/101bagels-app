@@ -73,6 +73,6 @@ export const sample_tags = [
 ]
 
 export const sample_users = [
-    {id: 1, name: 'John Doe', email: 'john@gmail.com', password: '12345', address: "Oceanside, CA", isAdmin: false,},
-    {id: 2, name: 'Om Rabadia', email: 'orrabadia@gmail.com', password: '12345', address: "Vista, CA", isAdmin: true,},
+    {id: 1, name: 'John Doe', email: 'john@gmail.com', password: '12345', isAdmin: false,},
+    {id: 2, name: 'Om Rabadia', email: 'orrabadia@gmail.com', password: '12345', isAdmin: true,},
 ]

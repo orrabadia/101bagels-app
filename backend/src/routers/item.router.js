@@ -1,42 +1,59 @@
 import { Router } from "express";
-import { sample_items, sample_tags } from "../data.js";
+import { ItemModel } from "../models/item.model.js";
+import handler from "express-async-handler";
 
 const router = Router();
 
-router.get('/menu', (req, res) => {
-    res.send(sample_items);
-});
+router.get('/menu', handler(async (req, res) => {
+    const items = await ItemModel.find({});
+    res.send(items);
+}));
 
-router.get('/menu/tags', (req, res) => {
-    res.send(sample_tags);
-});
+router.get('/menu/tags', handler(async (req, res) => {
+    const tags = await ItemModel.aggregate([
+        {
+            $unwind: '$tags',
+        },
+        {
+            $group: {
+                _id: '$tags',
+                count: {$sum: 1}
+            },
+        },
+        {
+            $project : {
+                _id: 0,
+                name: '$_id',
+                count: '$count',
+            },
+        }
+    ]).sort({count: -1 });
 
 
-router.get('/menu/search/:searchTerm', (req, res) => {
+    res.send(tags)
+}));
+
+
+router.get('/menu/search/:searchTerm', handler(async (req, res) => {
     const { searchTerm } = req.params;
-    const search = sample_items.filter(item => 
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const searchRegex = new RegExp(searchTerm, 'i');
+    
+    const search = await ItemModel.find({name: { $regex: searchRegex }})
     res.send(search)   
-});
+}));
 
-router.get('/menu/search/:searchTerm', (req, res) => {
-    const { searchTerm } = req.params;
-    const search = sample_items.filter(item => 
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    res.send(search)   
-});
 
-router.get('/menu/tag/:tag', (req, res) => {
+router.get('/menu/tag/:tag', handler(async (req, res) => {
     const { tag } = req.params;
-    const tags = sample_items.filter(item => item.tags?.includes(tag));
+    const tags = await ItemModel.find({tags: tag});
     res.send(tags);
-});
+}));
 
-router.get('/menu/item/:id', (req, res) => {
+router.get('/menu/item/:id', handler(async (req, res) => {
     const { id } = req.params;
-    const item = sample_items.find(item => item.id === id);
+    const item = await ItemModel.findById(id);
     res.send(item);
-});
+}));
 
 
 
