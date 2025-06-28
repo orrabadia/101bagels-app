@@ -71,3 +71,8 @@ export const sample_tags = [
     {name: 'Gluten Free', count: 2},
     {name: 'Sides', count: 2},
 ]
+
+export const sample_users = [
+    {id: 1, name: 'John Doe', email: 'john@gmail.com', password: '12345', address: "Oceanside, CA", isAdmin: false,},
+    {id: 2, name: 'Om Rabadia', email: 'orrabadia@gmail.com', password: '12345', address: "Vista, CA", isAdmin: true,},
+]
