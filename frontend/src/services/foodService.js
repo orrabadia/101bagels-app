@@ -26,3 +26,5 @@ export const getByID = async itemID => {
     const { data } = await axios.get('/api/items/menu/item/' + itemID)
     return data; 
 }
+
+// you need to fix the image Route because I think the folder Structure messes it up

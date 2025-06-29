@@ -23,6 +23,30 @@ router.post('/login', handler(async (req, res) => {
 
 }));
 
+router.post('/register', handler(async (req, res) => {
+    
+    // will need to put phone number
+    const { name, email, password } = req.body
+
+    const user = await UserModel.findOne({ email });
+
+    if (user) {
+        res.status(BAD_REQUEST).send('Account exists, please login!')
+        return;
+    }
+
+    const hashedPassword = await bcrypt.hash(password, PASSWORD_HASH_SALT_ROUNDS);
+
+    const newUser = {
+        name, email: email.toLowerCase(), password: hashedPassword,
+    }
+
+    const result = await UserModel.create(newUser);
+    res.send(generateTokenResponse(result))
+
+}))
+
+
 const generateTokenResponse = user => {
     const token = jwt.sign({
         id: user.id, email: user.email, isAdmin: user.isAdmin,

@@ -12,7 +12,7 @@ export default function Thumbnails({foods}) {
                 <li key={food.id}>
                     <Link to={`/menu/item/${food.id}`}>
                         <img className={classes.image} 
-                        src={`/menu-items/${food.imageUrl}`}
+                        src={food.imageUrl}
                         alt={food.name}
                         />
                     

@@ -51,7 +51,7 @@ export default function ItemPage() {
   return (
     <>
     { !item? (<NotFound message="Food Not Found!" linkText='Back To Menu' showButton={true} /> ) : (<div className={classes.container}>
-        <img className={classes.image} src={`/menu-items/${item.imageUrl}`} alt={item.name}/>
+        <img className={classes.image} src={item.imageUrl} alt={item.name}/>
         <div className={classes.details}>
             <div className={classes.header}>
                 <span className={classes.name}>{item.name}</span>

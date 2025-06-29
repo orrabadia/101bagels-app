@@ -5,6 +5,7 @@ import ItemPage from './pages/Items/ItemPage';
 import Landing from './pages/Landing/Landing';
 import CartPage from './pages/Cart/CartPage';
 import LoginPage from './pages/Login/LoginPage';
+import RegisterPage from './pages/Register/RegisterPage';
 
 export default function AppRoutes() {
   return <Routes>
@@ -15,5 +16,6 @@ export default function AppRoutes() {
     <Route path="/menu/item/:id" element={<ItemPage />} />
     <Route path="/cart" element={<CartPage />} />
     <Route path="/login" element={<LoginPage />} />
+    <Route path="/register" element={<RegisterPage/>} />
   </Routes>;
 }

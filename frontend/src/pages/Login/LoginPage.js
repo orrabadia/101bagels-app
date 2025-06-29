@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import classes from './loginPage.module.css'
 import { useForm } from 'react-hook-form'
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
@@ -32,7 +32,7 @@ export default function LoginPage() {
         <div className={classes.details}>
             <Title title="Login" margin="0 0 1rem 0" />
             <form onSubmit={handleSubmit(submit)} noValidate>
-            <Input type="email" label="Email" {...register('email', {
+            <Input type="email" label="Email Address" {...register('email', {
                 required: true, 
                 pattern: {
                     value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,63}$/i,
@@ -47,6 +47,13 @@ export default function LoginPage() {
             })} error={errors.password} />
 
             <Button type="submit" text="Login" />
+            <div className={classes.register}>
+                New user? &nbsp;
+                <Link to={`/register${returnUrl ? '?returnUrl=' + returnUrl : ''}`}>
+                    Register Here
+                </Link>
+            </div>
+
             </form>
         </div>
     </div>
