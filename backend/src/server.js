@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import itemRouter from './routers/item.router.js';
 import userRouter from './routers/user.router.js'
+import orderRouter from './routers/order.router.js'
 import { dbconnect } from './config/database.config.js';
 
 dbconnect();
@@ -19,6 +20,7 @@ app.use(cors({
 
 app.use('/api/items', itemRouter);
 app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter)
 
 const PORT = 5500;
 
