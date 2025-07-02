@@ -70,7 +70,17 @@ export default function CartProvider({ children }) {
     if (cartItem) {
       updateItemQuantity(cartItem, cartItem.quantity + 1);
     } else {
-      setCartItems([...cartItems, {item, quantity: 1, price: item.price}])
+      setCartItems([
+        ...cartItems,
+        {
+          item: {
+            ...item,
+            _id: item.id || item._id,  // normalize to _id if needed
+          },
+          quantity: 1,
+          price: item.price,
+        }
+      ]);
     }
   }
 
