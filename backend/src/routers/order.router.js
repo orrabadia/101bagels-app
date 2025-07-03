@@ -12,10 +12,11 @@ router.post('/create',
     handler(async (req, res) => {
         const order = req.body;
 
-        if (order.items.length <= 0) {
-        return res.status(BAD_REQUEST).send('Cart Is Empty!')
+        if (!order.items || order.items.length <= 0) {
+            return res.status(BAD_REQUEST).send('Cart Is Empty!');
         }
 
+        console.log("Authenticated user:", req.user);
       
         await OrderModel.deleteOne({
             user: req.user.id,
@@ -23,8 +24,14 @@ router.post('/create',
         })
 
         const newOrder = new OrderModel({...order, user: req.user.id});
-        await newOrder.save()
-        res.send(newOrder);
+        console.log('New Order Payload: ', newOrder)
+        try {
+            await newOrder.save()
+            res.send(newOrder);
+        } catch (error) {
+            console.error("Order save failed:", err);
+            res.status(BAD_REQUEST).send({ message: "Order save failed", error: err.message });
+        }
 
 
     })

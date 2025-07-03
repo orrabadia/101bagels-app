@@ -57,7 +57,19 @@
     padding: 0.1rem 0.45rem;
     border-radius: 100rem;
     font-size: 0.9rem;
+    transition: transform 0.2s ease;
 }
+
+.cart_count.jump {
+    animation: cartJump 0.6s ease;
+}
+
+@keyframes cartJump {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
 .cart_flex_container {
     display: flex;
     gap: 0.5rem;

@@ -3,9 +3,15 @@ import { UNAUTHORIZED } from '../constants/httpStatus.js'
 
 export default (req, res, next) => {
     const {verify} = pkg;
-    const token = req.headers.access_token;
-    if (!token) return res.status(UNAUTHORIZED).send();
-
+   
+    const authHeader = req.headers.authorization;
+  
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(UNAUTHORIZED).send();
+    }
+  
+    const token = authHeader.split(' ')[1];
+    
     try {
         const decoded = verify(token, process.env.JWT_SECRET);
         req.user = decoded;

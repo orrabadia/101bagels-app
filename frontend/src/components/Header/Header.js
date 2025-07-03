@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useCart } from '../../hooks/useCart';
 import classes from './header.module.css'
 import { Link } from 'react-router-dom';
@@ -7,8 +7,17 @@ import { useAuth } from '../../hooks/useAuth';
 export default function Header() {
 
     const { user, logout } = useAuth();
-
     const {cart} = useCart();
+    const [isJumping, setIsJumping] = useState(false);
+
+    // Trigger jump animation when cart count changes
+    useEffect(() => {
+        if (cart.totalCount > 0) {
+            setIsJumping(true);
+            const timer = setTimeout(() => setIsJumping(false), 600);
+            return () => clearTimeout(timer);
+        }
+    }, [cart.totalCount]);
 
     return (
         <header className={classes.header}>
@@ -38,7 +47,11 @@ export default function Header() {
                             <Link to="/cart">
                                 <div className={classes.cart_flex_container}>
                                     Cart
-                                    {cart.totalCount > 0 && <span className={classes.cart_count}>{cart.totalCount}</span>}
+                                    {cart.totalCount > 0 && (
+                                        <span className={`${classes.cart_count} ${isJumping ? classes.jump : ''}`}>
+                                            {cart.totalCount}
+                                        </span>
+                                    )}
                                 </div>
                             </Link>
                         </li>

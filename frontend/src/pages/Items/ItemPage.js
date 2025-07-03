@@ -7,6 +7,7 @@ import StarRating from '../../components/StarRating/StarRating';
 import Tags from '../../components/Tags/Tags';
 import Price from '../../components/Price/Price';
 import NotFound from '../../components/NotFound/NotFound';
+import { toast } from 'react-toastify';
 
 export default function ItemPage() {
     const [item, setItem] = useState({});
@@ -17,7 +18,11 @@ export default function ItemPage() {
 
     const handleAddToCart = () => {
       addToCart(item);
-      navigate('/cart');
+      toast.success('Item Added To Cart!', {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+      });
     }
 
     useEffect(() => {
