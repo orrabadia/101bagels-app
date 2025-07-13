@@ -11,6 +11,7 @@ import AuthRoute from './components/AuthRoute/AuthRoute';
 import PaymentPage from './pages/Payment/PaymentPage';
 import CancelPage from './pages/Cancel/CancelPage';
 import SuccessPage from './pages/Success/SuccessPage';
+import MyOrdersPage from './pages/MyOrders/MyOrdersPage';
 
 
 export default function AppRoutes() {
@@ -26,7 +27,8 @@ export default function AppRoutes() {
     <Route path="/checkout" element={<AuthRoute><CheckoutPage /></AuthRoute>} />
     <Route path="/payment" element={<AuthRoute><PaymentPage /></AuthRoute>} />
     <Route path="/cancel" element={<AuthRoute><CancelPage/></AuthRoute>} />
-    <Route path="/success" element={<AuthRoute><SuccessPage /></AuthRoute>} />
-
+    <Route path="/success/:orderId" element={<AuthRoute><SuccessPage /></AuthRoute>} />
+    <Route path="/my-orders" element={<AuthRoute><MyOrdersPage /></AuthRoute>} />
+    <Route path="/my-orders/:orderId" element={<AuthRoute><MyOrdersPage /></AuthRoute>} />
   </Routes>;
 }

@@ -13,8 +13,8 @@ return (
             <h3>Order Items:</h3>
             </td>
         </tr>
-        {order.items.map((item) => (
-            <tr key={item.itemId}>
+        {order.items.map((item, index) => (
+            <tr key={`${item.itemId}-${index}`}>
                 <td>
                 {linkToItem ? (
                 <Link to={`/menu/item/${item.itemId}`}>

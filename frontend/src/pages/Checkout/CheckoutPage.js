@@ -5,7 +5,6 @@ import { useAuth } from '../../hooks/useAuth'
 import { createOrder } from '../../services/orderService'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
-
 import { toast } from 'react-toastify';
 import Title from '../../components/Title/Title'
 import Input from '../../components/Input/Input'
@@ -18,7 +17,6 @@ export default function CheckoutPage() {
     const { user } = useAuth();
     const navigate = useNavigate();
 
-    // const [order, setOrder] = useState({...cart});
     const [order, setOrder] = useState({
         ...cart,
         items: cart.items.map(({ item, quantity }) => ({
@@ -33,14 +31,7 @@ export default function CheckoutPage() {
     const {register, formState: { errors }, handleSubmit, } = useForm();
 
     const submit = async data => {
-        // const formattedItems = order.items.map(({ item, quantity }) => ({
-        //     name: item.name,
-        //     price: item.price,
-        //     quantity,
-        //     itemId: item.id,
-        //     imageUrl: item.imageUrl,
-        // }));
-
+      
         const formattedItems = order.items;
 
         await createOrder({

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 
 const CartContext = createContext(null);
@@ -15,7 +15,6 @@ function getCartFromLocalStorage() {
   try {
     return storedCart ? JSON.parse(storedCart) : EMPTY_CART;
   } catch (e) {
-    console.error('Error parsing cart from localStorage:', e);
     return EMPTY_CART;
   }
 }
@@ -75,7 +74,7 @@ export default function CartProvider({ children }) {
         {
           item: {
             ...item,
-            _id: item.id || item._id,  // normalize to _id if needed
+            _id: item.id || item._id,  
           },
           quantity: 1,
           price: item.price,
@@ -84,12 +83,12 @@ export default function CartProvider({ children }) {
     }
   }
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setCartItems([]);
     setTotalPrice(0);
     setTotalCount(0);
     localStorage.removeItem('cart');
-  };
+  }, []);
 
   return (
     <CartContext.Provider

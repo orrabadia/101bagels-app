@@ -22,3 +22,33 @@ export const getNewOrderForCurrentUser = async () => {
     });
     return data;
 };
+
+export const getLatestOrderForCurrentUser = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = user?.token;
+    
+    const { data } = await axios.get('/api/orders/latestOrderForCurrentUser', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    return data;
+};
+
+export const getOrderById = async (orderId) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = user?.token;
+    
+    const { data } = await axios.get(`/api/orders/${orderId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+};
+
+export const findOrderById = async orderId => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = user?.token;
+    
+    const { data } = await axios.get(`/api/orders/my-orders/${orderId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+}

@@ -9,10 +9,9 @@ const StripeButtons = ({ order }) => {
     const res = await fetch('/api/stripe/create-checkout-session', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: order.items, orderId: order._id }),
+      body: JSON.stringify({ items: order.items, orderId: order.id }),
     });
 
-   
     const session = await res.json();
     const stripe = await stripePromise;
     const result = await stripe.redirectToCheckout({

@@ -9,8 +9,9 @@
 
 .list li a {
     height: 22.5rem;
-    width: 20rem;
+    width: 18rem;
     border: 1px solid whitesmoke;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 1rem;
     margin: 1rem;
     display: flex;

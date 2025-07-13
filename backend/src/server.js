@@ -6,11 +6,14 @@ import itemRouter from './routers/item.router.js';
 import userRouter from './routers/user.router.js'
 import orderRouter from './routers/order.router.js'
 import stripeRouter from './routers/stripe.router.js'
+import stripeWebhookRouter from './routers/stripe.webhook.router.js'
 import { dbconnect } from './config/database.config.js';
 
 dbconnect();
 
 const app = express();
+
+app.use('/api/stripe/webhook', stripeWebhookRouter)
 
 app.use(express.json());
 
