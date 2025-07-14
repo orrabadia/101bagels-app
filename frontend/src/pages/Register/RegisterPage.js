@@ -39,6 +39,10 @@ export default function RegisterPage() {
                     label="Name"
                     {...register('name', {
                         required: true, minLength: 5,
+                        pattern: {
+                            value: /^[A-Za-z\s]+$/,
+                            message: "Name must contain only letters and spaces"
+                        }
                     })}
                     error={errors.name}
                 />

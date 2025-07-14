@@ -6,6 +6,7 @@ import { PASSWORD_HASH_SALT_ROUNDS } from '../constants/dbHash.js';
 import handler from 'express-async-handler';
 import { UserModel } from '../models/user.model.js';
 import bcrypt from 'bcryptjs'
+import authMid from '../middleware/auth.mid.js';
 
 const router = Router();
 
@@ -46,6 +47,37 @@ router.post('/register', handler(async (req, res) => {
 
 }))
 
+router.put('/updateProfile', authMid, handler(async (req, res) => {
+    const { name } = req.body;
+    const user = await UserModel.findByIdAndUpdate(
+        req.user.id,
+        { name },
+        { new: true }
+    )
+
+    res.send(generateTokenResponse(user));
+}))
+
+router.put('/changePassword', authMid, handler(async (req, res) => {
+    const { currentPassword, newPassword } = req.body
+    const user = await UserModel.findById(req.user.id)
+
+    if (!user) {
+        res.status(BAD_REQUEST).send('Change Password Failed!');
+        return;
+    }
+    const equal = await bcrypt.compare(currentPassword, user.password)
+
+    if (!equal) {
+        res.status(BAD_REQUEST).send('Current Password Is Not Correct!')
+        return;
+    }
+
+    user.password = await bcrypt.hash(newPassword, PASSWORD_HASH_SALT_ROUNDS)
+    await user.save()
+
+    res.send();
+}))
 
 const generateTokenResponse = user => {
     const token = jwt.sign({

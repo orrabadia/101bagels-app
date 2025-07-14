@@ -12,6 +12,7 @@ import PaymentPage from './pages/Payment/PaymentPage';
 import CancelPage from './pages/Cancel/CancelPage';
 import SuccessPage from './pages/Success/SuccessPage';
 import MyOrdersPage from './pages/MyOrders/MyOrdersPage';
+import ProfilePage from './pages/Profile/ProfilePage';
 
 
 export default function AppRoutes() {
@@ -30,5 +31,6 @@ export default function AppRoutes() {
     <Route path="/success/:orderId" element={<AuthRoute><SuccessPage /></AuthRoute>} />
     <Route path="/my-orders" element={<AuthRoute><MyOrdersPage /></AuthRoute>} />
     <Route path="/my-orders/:orderId" element={<AuthRoute><MyOrdersPage /></AuthRoute>} />
+    <Route path="/profile" element={<AuthRoute><ProfilePage /></AuthRoute>} />
   </Routes>;
 }

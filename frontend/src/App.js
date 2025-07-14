@@ -4,6 +4,7 @@ import Loading from "./components/Loading/Loading";
 import { useLoading } from "./hooks/useLoading";
 import { setLoadingInterceptor } from "./interceptors/loadingInterceptor"
 import { useEffect } from "react";
+import './axiosConfig';
 
 function App() {
   const {showLoading, hideLoading} = useLoading();

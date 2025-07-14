@@ -23,3 +23,33 @@ export const register = async registerData => {
 export const logout = () => {
     localStorage.removeItem('user');
 };
+
+export const updateProfile = async user => {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    const token = currentUser?.token;
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    const { data } = await axios.put('/api/users/updateProfile', user, config);
+    localStorage.setItem('user', JSON.stringify(data));
+    return data;
+
+}
+export const changePassword = async passwords => {
+
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    const token = currentUser?.token;
+
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    
+    await axios.put('/api/users/changePassword', passwords)
+
+}
