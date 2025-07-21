@@ -25,7 +25,7 @@ router.post('/create',
             status: OrderStatus.NEW,
         })
 
-        const newOrder = new OrderModel({...order, user: req.user.id});
+        const newOrder = new OrderModel({...order, user: req.user.id, status: OrderStatus.NEW});
         console.log('New Order Payload: ', newOrder)
         try {
             await newOrder.save()
@@ -67,6 +67,50 @@ router.get(
     })
 );
 
+router.post('/cancel-latest', auth, handler(async (req, res) => {
+  const order = await OrderModel.findOneAndUpdate(
+    { user: req.user.id, status: 'NEW' },
+    { status: 'CANCELLED' }
+  );
+  res.send({ success: !!order });
+}));
+
+router.get('/my-orders/:orderId', handler(async (req, res) => {
+  const { orderId } = req.params;
+  const user = await UserModel.findById(req.user.id);
+
+  const filter = { _id: orderId };
+
+  if (!user) {
+    return res.status(UNAUTHORIZED).send({ message: 'User not found' });
+  }
+
+  if (!user.isAdmin) {
+    filter.user = user.id;
+  }
+
+  const order = await OrderModel.findOne(filter);
+
+  if (!order) return res.status(UNAUTHORIZED).send({ message: 'Order not found or unauthorized' });
+
+
+  return res.send(order);
+
+}))
+
+router.get('/my-orders', handler(async (req, res) => {
+  const user = await UserModel.findById(req.user.id);
+
+  const filter = {status: { $ne: OrderStatus.PENDING }}
+  if (!user.isAdmin) {
+    filter.user = user.id;
+  }
+
+  const orders = await OrderModel.find(filter).sort({ createdAt: -1 });
+
+  res.send(orders);
+}));
+
 router.get('/:id', auth, handler(async (req, res) => {
     const order = await OrderModel.findOne({
       _id: req.params.id,
@@ -78,23 +122,7 @@ router.get('/:id', auth, handler(async (req, res) => {
     res.send(order);
 }));
 
-router.get('/my-orders/:orderId', handler(async (req, res) => {
-  const { orderId } = req.params;
-  const user = await UserModel.findById(req.user.id);
 
-  const filter = { _id: orderId };
-
-  if (!user.isAdmin) {
-    filter.user = user_.id;
-  }
-
-  const order = await OrderModel.findOne(filter);
-
-  if (!order) return res.send(UNAUTHORIZED)
-
-  return res.send(order);
-
-}))
 
 export default router;
 

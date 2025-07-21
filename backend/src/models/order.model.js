@@ -18,7 +18,7 @@ const orderSchema = new Schema({
     paymentId: { type: String },                               // Optional Stripe/payment ID
     totalPrice: { type: Number, required: true },              // Total for entire order
     items: { type: [OrderItemSchema], required: true },        // List of purchased items
-    status: { type: String, default: OrderStatus.NEW },        // Order status
+    status: { type: String, default: OrderStatus.PENDING },        // Order status
     user: { type: Schema.Types.ObjectId, required: true, ref: 'user' }, // Linked user
 }, {
     timestamps: true,

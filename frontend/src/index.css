@@ -11,6 +11,9 @@
   --grey: #F5F5F5;
   --black: #1B1B1B;
   --white: #FFFFFF;
+
+  /* Constants */
+  --shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 html {

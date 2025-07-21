@@ -33,6 +33,7 @@
 
 .menu_container {
     position: relative;
+    
 }
 
 .menu {
@@ -40,15 +41,27 @@
     z-index: 1;
     background-color: whitesmoke;
     display: none;
+    border-radius: 0 0 0.5rem 0.5rem;
 }
 
 .menu_container:hover .menu {
     display: block;
+    
 }
 
 .menu a {
     width: 100%;
     min-width: 8rem;
+}
+
+.menu a:last-child {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+  
+.menu a:last-child:hover {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 
 .cart_count {

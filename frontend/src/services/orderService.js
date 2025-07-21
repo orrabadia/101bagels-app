@@ -46,9 +46,20 @@ export const getOrderById = async (orderId) => {
 export const findOrderById = async orderId => {
     const user = JSON.parse(localStorage.getItem('user'));
     const token = user?.token;
-    
+
     const { data } = await axios.get(`/api/orders/my-orders/${orderId}`, {
         headers: { Authorization: `Bearer ${token}` },
     });
+    return data;
+}
+
+export const getAllOrders = async () => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    const token = user?.token;
+
+    const { data } = await axios.get('/api/orders/my-orders', {
+        headers: { Authorization: `Bearer ${token}` },
+    })
+
     return data;
 }
